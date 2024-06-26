@@ -57,6 +57,7 @@ module ActiveJob
 
         module LockingOnEnqueue
           def before_enqueue
+            byebug
             return if lock(resource: lock_key, ttl: lock_ttl)
 
             handle_conflict(resource: lock_key, on_conflict: on_conflict)
